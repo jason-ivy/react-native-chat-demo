@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, TextInput, Text, StatusBar } from 'react-native';
 import { Container, Content, Button, Icon, ListItem, Left, Right, Body } from 'native-base';
 import {NimSession} from 'react-native-netease-im';
-import {NavigationActions} from 'react-navigation';
+import { NavigationActions, StackActions } from 'react-navigation';
 import styles from './style';
 import md5 from '../../utils/md5';
 
@@ -28,7 +28,7 @@ export default class Login extends Component {
         NimSession.login(this.state.name,md5.createHash(this.state.password)).then((data)=>{
             console.info(data);
             global.imaccount = this.state.name;
-            navigation.dispatch(NavigationActions.reset({
+            navigation.dispatch(StackActions.reset({
                 index: 0,
                 actions: [
                     NavigationActions.navigate({ routeName: 'Main'})
@@ -88,4 +88,3 @@ export default class Login extends Component {
         );
     }
 }
-

@@ -1,5 +1,6 @@
-import {Easing,Animated} from 'react-native';
-import {StackNavigator} from 'react-navigation';
+import { Easing, Animated } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+
 import Login from '../pages/login';
 import Chat from '../pages/Chat';
 import ChatList from '../pages/ChatList';
@@ -14,7 +15,8 @@ import SendAddFriend from '../pages/SendAddFriend';
 import UpdateTeamName from '../pages/UpdateTeamName';
 import SearchScreen from '../pages/SearchScreen';
 import SelectUsers from '../pages/SelectUsers';
-const MainNavigator = StackNavigator({
+
+const MainNavigator = createStackNavigator({
         ChatList:{
             key:"index",
             screen: ChatList,
@@ -61,7 +63,7 @@ const MainNavigator = StackNavigator({
         }
     }
 );
-const AppNavigator = StackNavigator({
+const AppNavigator = createStackNavigator({
     Login: {
         screen: Login,
     },
@@ -111,6 +113,7 @@ const AppNavigator = StackNavigator({
             },
         }),
     });
+    
 export function getCurrentScreen(navigationState) {
     if (!navigationState) {
         return null
