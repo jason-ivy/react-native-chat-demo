@@ -22,13 +22,20 @@
     "react-native-swipe-list-view": "^0.4.6",
     "react-native-swiper": "^1.5.13",
     "react-navigation": "^2.2.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-persist": "^5.10.0",
+    "reduxsauce": "^1.0.0",
     "spliddit": "^2.1.1"
   },
   "devDependencies": {
     "babel-jest": "21.2.0",
     "babel-preset-react-native": "4.0.0",
     "jest": "21.2.1",
-    "react-test-renderer": "16.0.0"
+    "react-test-renderer": "16.0.0",
+    "reactotron-react-native": "^2.0.0-beta.5",
+    "reactotron-redux": "^1.13.0",
+    "redux-logger": "^3.0.6"
   },
   "jest": {
     "preset": "react-native"
