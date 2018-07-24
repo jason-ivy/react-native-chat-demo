@@ -1,20 +1,15 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  AsyncStorage,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { connect } from 'react-redux';
+import { ActivityIndicator, StatusBar, View } from 'react-native';
 
-export default class AuthLoadingScreen extends React.Component {
+class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();
   }
 
   _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
+    const userToken = this.props.state.userToken;
     this.props.navigation.navigate(userToken ? 'App' : 'Auth');
   };
 
@@ -27,3 +22,9 @@ export default class AuthLoadingScreen extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { state: state.auth };
+}
+
+export default connect(mapStateToProps)(AuthLoadingScreen);

@@ -1,18 +1,20 @@
 import { createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
 import HomeNavigator from './home';
 import ChatNavigator from './chat';
+import MineNavigator from './mine';
 import Auth from '../pages/auth';
 import AuthLoading from '../pages/auth-loading';
 
 const AppNavigator = createBottomTabNavigator({
   Home: HomeNavigator,
-  Chat: ChatNavigator
+  Chat: ChatNavigator,
+  Mine: MineNavigator,
 });
 
 export default createSwitchNavigator(
   {
     AuthLoading: AuthLoading,
-    Auth: Auth,    
+    Auth: Auth,
     App: AppNavigator,
   },
   {

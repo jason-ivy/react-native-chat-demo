@@ -1,20 +1,55 @@
 import { createActions, createReducer } from 'reduxsauce';
+import {Toast} from 'native-base';
+
+import { apis, api } from '../apis';
 
 const INIT_STATE = {
-  vCode: 1,
   phone: null,
-  token: null
+  userToken: null
 }
 
-const { Types, Creators } = createActions({
-  sendSMS: ['phone'],
+export const { Types, Creators } = createActions({
+  changePhone: ['phone'],
+  sendCode: sendCode,
   login: ['phone', 'vCode'],
   logout: null
 }, {});
 
 export default createReducer(INIT_STATE, {
-  // [Types.SEND_SMS]: (state, action) => {console.log('sendSMS'); return {...state, vCode: 'sms'}},
-  [Types.LOGIN]: () => {console.log('login')},
-  [Types.LOGOUT]: () => {console.log('logout')}
+  [Types.CHANGE_PHONE]: changePhone,
+  [Types.LOGIN]: () => { return {userToken: 'true'} },
+  [Types.LOGOUT]: () => {}
 });
 
+function changePhone(state, action) {
+  return {...state, phone: action.phone}
+}
+
+function sendCode() {
+  return (dispatch, getState) => {
+    // const phone = getState().auth.phone;
+    // debugger;
+    api.get(apis.sendCode, {
+      phone: '18321776136'
+    }).then(res => {
+      console.log(res);
+        if(res && res.data) {
+          console.log(res.data);
+          if(res.data.res == 1) {
+            alert('验证码已发送');
+          } else if(res.data.res == 303) {
+            alert('请不要频繁发送');
+          }          
+        }
+      }, err => {
+        Toast.show({
+          text: '网络问题，请稍后重试'
+        });
+        console.log(err);
+      });
+
+    // setTimeout(() => {
+    //   dispatch(Creators.login());
+    // }, 2000);
+  }
+}

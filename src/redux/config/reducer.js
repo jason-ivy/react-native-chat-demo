@@ -5,5 +5,5 @@ import auth from '../auth';
 const resettable = resettableReducer('RESET');
 
 export default combineReducers({
-  auth: resettable(auth)
+  auth: auth
 });

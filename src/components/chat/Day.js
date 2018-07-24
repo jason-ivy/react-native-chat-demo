@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native';
 
-import {showTime} from '../../utils';
+import {showTime} from '../../utils/chat';
 import PropTypes from 'prop-types';
 export default class Day extends React.Component {
     render() {
