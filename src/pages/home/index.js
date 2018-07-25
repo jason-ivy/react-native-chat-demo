@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Image, TextInput, Text, StatusBar, AsyncStorage } from 'react-native';
-import { Container, Content, Button, Icon, ListItem, Left, Right, Body } from 'native-base';
+import { View, Image, TextInput, StatusBar, AsyncStorage, StyleSheet } from 'react-native';
+import { Container, Header, Left, Body, Right, Button, Icon, Segment, Content, Text } from 'native-base';
 
 export default class Login extends Component {
     static navigationOptions = {
@@ -9,6 +9,10 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        // this._signOutAsync();
     }
 
     _showMoreApp = () => {
@@ -23,16 +27,42 @@ export default class Login extends Component {
     render() {
         return (
             <Container>
-                <StatusBar backgroundColor="black" barStyle="dark-content"/>
-                <Content alwaysBounceVertical={false}>
-                    <Button onPress={this._showMoreApp}>
-                        <Text>Show me more of the app</Text>
+                <Header hasSegment style={styles.header}>
+                <Left>
+                    <Button transparent>
+                        <Text style={styles.city}>杭州</Text>
+                        <Icon name='arrow-down' style={styles.headerIcon}/>
                     </Button>
-                    <Button onPress={this._signOutAsync}>
-                        <Text>Actually, sign me out :)</Text>
+                </Left>
+                <Body>
+                    <Segment>
+                        <Button first active><Text>推荐</Text></Button>
+                        <Button second><Text>圈子</Text></Button>
+                        <Button last><Text>邀约</Text></Button>
+                    </Segment>
+                </Body>
+                <Right>
+                    <Button transparent>
+                        <Icon type="MaterialIcons" name="directions" style={styles.headerIcon}/>
                     </Button>
+                </Right>
+                </Header>
+                <Content padder>
+                    <Text>Awesome segment</Text>
                 </Content>
             </Container>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    header: {
+        backgroundColor: '#fff'
+    },
+    headerIcon: {
+        color: '#0779fc',
+    },
+    city: {
+        color: '#0779fc'
+    }
+})

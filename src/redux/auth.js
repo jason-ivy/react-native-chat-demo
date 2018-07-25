@@ -9,21 +9,25 @@ const INIT_STATE = {
 }
 
 export const { Types, Creators } = createActions({
-  changePhone: ['phone'],
-  sendCode: sendCode,
-  login: ['phone', 'vCode'],
+  login: ['token'],
   logout: null
 }, {});
 
 export default createReducer(INIT_STATE, {
-  [Types.CHANGE_PHONE]: changePhone,
-  [Types.LOGIN]: () => { return {userToken: 'true'} },
-  [Types.LOGOUT]: () => {}
+  [Types.LOGIN]: login,
+  [Types.LOGOUT]: logout
 });
 
-function changePhone(state, action) {
-  return {...state, phone: action.phone}
+function login(state, action) {
+  return {...state, token: action.token};
 }
+
+function logout() {
+  return {...state, token: null};
+}
+
+
+
 
 function sendCode() {
   return (dispatch, getState) => {

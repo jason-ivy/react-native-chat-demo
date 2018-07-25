@@ -11,4 +11,5 @@ export const api = create({
 
 export const apis = {
   sendCode: '/user/user/sendCode',
+  login: '/user/user/checkCode',
 }

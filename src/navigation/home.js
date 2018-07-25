@@ -5,6 +5,8 @@ const HomeNavigator = createStackNavigator({
   Home: {
       screen: Home
   }
+}, {
+  headerMode: 'none'
 });
 
 export default HomeNavigator
